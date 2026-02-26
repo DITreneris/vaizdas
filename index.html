@@ -1220,7 +1220,7 @@
         /* ===== TOAST ===== */
         .toast {
             position: fixed;
-            bottom: calc(var(--space-32) + env(safe-area-inset-bottom, 0));
+            bottom: var(--space-32);
             right: var(--space-32);
             background: white;
             border: var(--border-width) solid rgba(56, 161, 105, 0.4);
@@ -1496,7 +1496,7 @@
             .toast {
                 left: 20px;
                 right: 20px;
-                bottom: calc(20px + env(safe-area-inset-bottom, 0));
+                bottom: 20px;
             }
         }
 
@@ -1562,7 +1562,7 @@
             .modal {
                 max-height: 90vh;
                 border-radius: var(--r-card) var(--r-card) 0 0;
-                padding: var(--space-24) 20px calc(var(--space-32) + env(safe-area-inset-bottom, 0));
+                padding: var(--space-24) 20px var(--space-32);
             }
 
             .modal-close {
@@ -1573,10 +1573,9 @@
             .toast {
                 font-size: 16px;
                 padding: 16px 20px;
-                padding-bottom: calc(16px + env(safe-area-inset-bottom, 0));
                 left: 12px;
                 right: 12px;
-                bottom: calc(16px + env(safe-area-inset-bottom, 0));
+                bottom: 16px;
             }
 
             /* Checkbox tap area mobilėje: ≥44px, vizualiai 24px (WCAG) */
@@ -1671,7 +1670,7 @@
 
             .footer {
                 padding: 24px 16px;
-                padding-bottom: calc(24px + env(safe-area-inset-bottom, 0));
+                padding-bottom: 24px;
             }
         }
 
