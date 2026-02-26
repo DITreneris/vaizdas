@@ -2,7 +2,7 @@
 <html lang="lt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>HR kasdienė atrankos sistema – DI promptai</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>html { scroll-behavior: smooth; }</style>
@@ -1199,7 +1199,7 @@
             padding: 16px 18px;
             min-height: 44px;
             line-height: 24px;
-            background: var(--tertiary);
+            background: #008579; /* WCAG2AA 4.5:1 su baltu tekstu */
             color: white;
             text-decoration: none;
             border-radius: var(--r-btn);
@@ -1209,7 +1209,7 @@
         }
 
         .next-steps-links a:hover {
-            background: var(--tertiary-hover);
+            background: #006d62;
         }
 
         .next-steps-links a:focus-visible {
@@ -1220,7 +1220,7 @@
         /* ===== TOAST ===== */
         .toast {
             position: fixed;
-            bottom: var(--space-32);
+            bottom: calc(var(--space-32) + env(safe-area-inset-bottom, 0));
             right: var(--space-32);
             background: white;
             border: var(--border-width) solid rgba(56, 161, 105, 0.4);
@@ -1369,14 +1369,14 @@
             margin-bottom: 24px;
         }
         .footer-product-link a {
-            color: var(--tertiary);
+            color: #008579; /* WCAG2AA 4.5:1 ant šviesaus fono */
             font-weight: 700;
             text-decoration: none;
         }
         .footer-product-link a:hover,
         .footer-product-link a:focus-visible {
             text-decoration: underline;
-            outline: 2px solid var(--tertiary);
+            outline: 2px solid #008579;
             outline-offset: 2px;
         }
 
@@ -1496,11 +1496,15 @@
             .toast {
                 left: 20px;
                 right: 20px;
-                bottom: 20px;
+                bottom: calc(20px + env(safe-area-inset-bottom, 0));
             }
         }
 
         @media (max-width: 480px) {
+            .instructions-title {
+                flex-wrap: wrap;
+            }
+
             .header {
                 padding: 32px 20px;
             }
@@ -1558,7 +1562,7 @@
             .modal {
                 max-height: 90vh;
                 border-radius: var(--r-card) var(--r-card) 0 0;
-                padding: var(--space-24) 20px var(--space-32);
+                padding: var(--space-24) 20px calc(var(--space-32) + env(safe-area-inset-bottom, 0));
             }
 
             .modal-close {
@@ -1569,9 +1573,22 @@
             .toast {
                 font-size: 16px;
                 padding: 16px 20px;
+                padding-bottom: calc(16px + env(safe-area-inset-bottom, 0));
                 left: 12px;
                 right: 12px;
-                bottom: 16px;
+                bottom: calc(16px + env(safe-area-inset-bottom, 0));
+            }
+
+            /* Checkbox tap area mobilėje: ≥44px, vizualiai 24px (WCAG) */
+            .prompt-done-wrap {
+                min-height: 44px;
+                padding: 12px 0;
+            }
+            .prompt-done-wrap input {
+                width: 24px;
+                height: 24px;
+                min-width: 24px;
+                min-height: 24px;
             }
         }
 
@@ -1585,8 +1602,16 @@
                 padding: 24px 16px;
             }
 
+            .header-badges {
+                gap: 8px;
+            }
+            .header-badges .badge {
+                font-size: 11px;
+            }
+
             .header h1 {
                 font-size: 24px;
+                line-height: 1.2;
             }
 
             .next-steps-links {
@@ -1597,6 +1622,7 @@
                 padding: 12px 14px;
                 min-height: 44px;
                 font-size: 14px;
+                min-width: 0;
             }
 
             .instructions {
@@ -1610,7 +1636,7 @@
             }
 
             .code-text {
-                font-size: 13px;
+                font-size: 14px;
                 word-break: break-word;
             }
 
@@ -1645,6 +1671,7 @@
 
             .footer {
                 padding: 24px 16px;
+                padding-bottom: calc(24px + env(safe-area-inset-bottom, 0));
             }
         }
 
@@ -1737,7 +1764,7 @@
                     <span class="prompt-time">~5–10 min</span>
                 </div>
                 <h2 class="prompt-title">Kur stringame?</h2>
-                <p class="prompt-desc">Padėk suprasti, kur mūsų atrankoje problema</p>
+                <p class="prompt-desc">Padėk suprasti mūsų atrankos iššūkius</p>
             </div>
             <div class="prompt-body">
                 <div class="code-block" 
@@ -1750,7 +1777,7 @@
                     <span class="code-block-toolbar" aria-hidden="true"><i data-lucide="copy" class="icon icon--sm"></i> Kopijuoti</span>
                     <pre class="code-text" id="prompt1">Tu esi atrankos analitikas. Tavo tikslas – pagal skaičius nustatyti, kur atrankoje stringame ir ką pakeisti.
 
-Padėk man suprasti, kur mūsų atrankoje problema.
+Padėk man suprasti mūsų atrankos iššūkius.
 
 Turime:
 - Kandidatų skaičius: [ ]
