@@ -45,6 +45,18 @@
             --space-28: 28px;
             --space-32: 32px;
 
+            /* Motion – C-level (nuoseklus ritmas) */
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --duration-slow: 400ms;
+            --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+            /* Tipografija – leading */
+            --leading-tight: 1.25;
+            --leading-normal: 1.5;
+            --leading-relaxed: 1.6;
+
             /* Pagrindinis akcentas – žalia; WCAG2AA 4.5:1 */
             --accent-primary: #0E7A33;
             --accent-primary-hover: #0B6B2D;
@@ -211,19 +223,19 @@
         .badge {
             display: inline-flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 10px 18px;
-            min-height: 40px;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            min-height: 32px;
             border-radius: var(--r-badge);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+            transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
         }
         .badge:hover {
             transform: translateY(-1px);
@@ -253,9 +265,9 @@
         .header h1 {
             font-size: 52px;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: var(--leading-tight);
             margin-bottom: var(--space-24);
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
         }
 
         .header p {
@@ -264,6 +276,82 @@
             opacity: 0.95;
             font-weight: 500;
             margin-bottom: var(--space-12);
+        }
+
+        .header-phases {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-12) var(--space-16);
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-bottom: var(--space-24);
+        }
+
+        .header-phases li {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .header-phases li::after {
+            content: '›';
+            margin-left: var(--space-8);
+            margin-right: var(--space-8);
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        .header-phases li:last-child::after {
+            content: '';
+            margin: 0;
+        }
+
+        .header-phase-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            background: transparent;
+            color: rgba(255, 255, 255, 0.85);
+            font: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+            gap: 6px;
+            transition: background var(--duration-normal) var(--ease-out), border-color var(--duration-normal) var(--ease-out), color var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
+        }
+
+        .header-phase-link::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.9);
+            opacity: 0.3;
+        }
+
+        .header-phase-link.is-active {
+            background: rgba(236, 253, 245, 0.96);
+            color: var(--accent-dark);
+            border-color: rgba(236, 253, 245, 0.96);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .header-phase-link.is-active::before {
+            background: var(--accent-primary);
+            opacity: 1;
+        }
+
+        .header-phase-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #FFFFFF;
+        }
+
+        .header-phase-link:focus-visible {
+            outline: 2px solid #FFFFFF;
+            outline-offset: 2px;
         }
 
         .header-note {
@@ -309,13 +397,13 @@
         .header .header-cta .cta-button {
             background: var(--cta-hero-bg);
             color: var(--cta-hero-text);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             min-height: 56px;
-            padding: 28px 40px;
+            padding: 28px 48px;
             font-size: 18px;
             font-weight: 800;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out), background var(--duration-normal) var(--ease-out);
         }
 
         .header .header-cta .cta-button:hover {
@@ -832,12 +920,12 @@
             border-radius: var(--r-card);
             margin-bottom: var(--space-32);
             overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            transition: box-shadow 0.25s ease, border-color 0.2s ease, transform 0.2s ease;
+            box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: box-shadow var(--duration-normal) var(--ease-out), border-color var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out);
         }
 
         .prompt:hover {
-            box-shadow: var(--shadow-elevated);
+            box-shadow: var(--shadow-elevated), inset 0 1px 0 rgba(255, 255, 255, 0.5);
             border-color: var(--border-subtle-dark);
         }
 
@@ -856,20 +944,30 @@
 
         /* Badge sistemos dalis – skaičius kortelėje */
         .number {
-            width: 40px;
-            height: 40px;
             min-width: 40px;
             min-height: 40px;
+            padding: 10px 14px;
             background: var(--accent-gold);
             color: var(--white);
             border-radius: var(--r-badge);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 12px;
             font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
             box-shadow: var(--shadow-card);
             border: var(--border-width) solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Viduje fazės kortelės fazės numeris / pavadinimas nebėra kartojamas – pakanka fazės header */
+        .phase-body .prompt .number {
+            display: none;
+        }
+        .phase-body .prompt .category {
+            display: none;
         }
 
         /* Badge sistemos dalis – kategorija */
@@ -918,13 +1016,13 @@
             margin-top: var(--space-16);
             margin-bottom: var(--space-24);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: box-shadow var(--duration-normal) var(--ease-out), background var(--duration-normal) var(--ease-out), border-color var(--duration-normal) var(--ease-out);
             position: relative;
             outline: none;
             min-height: 44px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(60, 72, 90, 0.05);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 1px 2px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(60, 72, 90, 0.05);
         }
 
         .code-block:focus-visible {
@@ -974,10 +1072,12 @@
         .code-text {
             font-family: 'JetBrains Mono', monospace;
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.65;
             color: var(--text);
             white-space: pre-wrap;
             font-weight: 500;
+            max-width: 72ch;
+            display: block;
         }
 
         /* Info box – subtilus tint, small caps title, icon su circle */
@@ -1071,7 +1171,7 @@
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: box-shadow var(--duration-normal) var(--ease-out), transform var(--duration-fast) var(--ease-out), background var(--duration-normal) var(--ease-out);
             font-family: 'Inter', sans-serif;
             box-shadow: 0 4px 14px rgba(14, 122, 51, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
             outline: none;
@@ -1095,7 +1195,8 @@
 
         .btn.success {
             background: var(--green);
-            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
+            box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3), 0 0 0 2px var(--green);
+            transition: box-shadow 0.3s var(--ease-out), background var(--duration-normal) var(--ease-out);
         }
 
         .btn.success:hover {
@@ -1129,6 +1230,10 @@
             min-height: 22px;
             accent-color: var(--green);
         }
+        .prompt-done-wrap input:focus-visible {
+            outline: 3px solid var(--accent-gold);
+            outline-offset: 2px;
+        }
 
         /* ===== PROGRESS INDICATOR (S1) ===== */
         .progress-wrap {
@@ -1160,7 +1265,112 @@
             height: 100%;
             background: var(--accent-gold);
             border-radius: 4px;
-            transition: width 0.3s ease;
+            transition: width 0.5s var(--ease-out);
+        }
+
+        /* ===== PHASE ACCORDION (6 fazės) ===== */
+        .phase {
+            background: var(--white);
+            border: var(--border-width) solid var(--border-subtle);
+            border-radius: var(--r-card);
+            box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            margin-bottom: var(--space-24);
+            overflow: hidden;
+        }
+
+        .phase-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            padding: var(--space-20) var(--space-24);
+            background: linear-gradient(to right, var(--blue-light), var(--orange-light));
+            border: 0;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            transition: box-shadow var(--duration-normal) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+        }
+
+        .phase-header:focus-visible {
+            outline: 3px solid var(--accent-gold);
+            outline-offset: 2px;
+        }
+
+        .phase-header:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .phase-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            padding: 10px 14px;
+            border-radius: var(--r-badge);
+            background: var(--accent-gold);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            box-shadow: var(--shadow-card);
+            border: var(--border-width) solid rgba(255, 255, 255, 0.2);
+        }
+
+        .phase-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+
+        .phase-meta {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            min-height: 40px;
+            padding: 10px 14px;
+            border-radius: var(--r-badge);
+            background: rgba(255, 255, 255, 0.55);
+            border: var(--border-width) solid var(--border-subtle-dark);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent-dark);
+            white-space: nowrap;
+        }
+
+        .phase-chevron {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.45);
+            border: var(--border-width) solid var(--border-subtle-dark);
+            transition: transform var(--duration-normal) var(--ease-out);
+            flex-shrink: 0;
+        }
+
+        .phase.is-open .phase-chevron {
+            transform: rotate(180deg);
+        }
+
+        .phase-body {
+            padding: 0 var(--space-16) var(--space-16);
+        }
+
+        .phase-body .prompt {
+            margin-bottom: var(--space-16);
+        }
+
+        .phase-body .prompt:last-child {
+            margin-bottom: 0;
         }
 
         /* ===== KAS TOLIAU (S2) ===== */
@@ -1217,6 +1427,22 @@
             outline-offset: 2px;
         }
 
+        .system-done-cta a:first-child {
+            background: var(--community-cta-green);
+            color: white;
+        }
+        .system-done-cta a:first-child:hover {
+            background: var(--community-cta-green-hover);
+        }
+        .system-done-cta a:last-child {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+        .system-done-cta a:last-child:hover {
+            background: var(--orange-light);
+        }
+
         /* ===== TOAST ===== */
         .toast {
             position: fixed;
@@ -1230,8 +1456,8 @@
             font-size: 18px;
             font-weight: 700;
             opacity: 0;
-            transform: translateY(20px) scale(0.9);
-            transition: all 0.3s;
+            transform: translateY(12px) scale(0.98);
+            transition: transform 0.35s var(--ease-out), opacity 0.3s ease;
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -1372,6 +1598,8 @@
             color: #008579; /* WCAG2AA 4.5:1 ant šviesaus fono */
             font-weight: 700;
             text-decoration: none;
+            text-underline-offset: 3px;
+            transition: color var(--duration-fast) var(--ease-out);
         }
         .footer-product-link a:hover,
         .footer-product-link a:focus-visible {
@@ -1491,6 +1719,14 @@
 
             .code-text {
                 font-size: 14px;
+            }
+
+            .phase-header {
+                padding: 18px 16px;
+            }
+
+            .phase-title {
+                font-size: 16px;
             }
 
             .toast {
@@ -1613,6 +1849,10 @@
                 line-height: 1.2;
             }
 
+            .phase-meta {
+                display: none;
+            }
+
             .next-steps-links {
                 gap: 10px;
             }
@@ -1712,10 +1952,17 @@
                 <span class="badge badge-spinoff" role="status" aria-label="HR kasdienė atrankos sistema, Spin-off Nr. 3">Spin-off Nr. 3</span>
             </div>
             <h1>DI atrankos sistema<br>Personalo vadovui</h1>
-            <p>Veikianti darbuotojų atrankos ir išlaikymo sistema vos per ~30 min.</p>
+            <p>Veikianti atrankos struktūra per ~30 min.</p>
+            <ul class="header-phases" aria-label="6 sistemos fazės">
+                <li><button type="button" class="header-phase-link is-active" data-phase="1">1. Diagnostika</button></li>
+                <li><button type="button" class="header-phase-link" data-phase="2">2. Profilis</button></li>
+                <li><button type="button" class="header-phase-link" data-phase="3">3. Pritraukimas</button></li>
+                <li><button type="button" class="header-phase-link" data-phase="4">4. Atranka</button></li>
+                <li><button type="button" class="header-phase-link" data-phase="5">5. Pasiūlymas</button></li>
+                <li><button type="button" class="header-phase-link" data-phase="6">6. Išlaikymas</button></li>
+            </ul>
             <div class="header-cta">
-                <a href="#block1" class="cta-button" aria-label="Pradėti – pereiti prie promptų">Pradėti</a>
-                <a href="#community" class="cta-button-outline" aria-label="Prisijunk prie bendruomenės – pereiti prie WhatsApp ir nuorodų">Prisijunk prie bendruomenės</a>
+                <a href="#progressIndicator" class="cta-button" aria-label="Peržiūrėti sistemą – progresas ir fazės">Peržiūrėti sistemą</a>
             </div>
         </header>
 
@@ -1735,31 +1982,31 @@
         <section class="instructions" aria-labelledby="instructions-title">
             <h2 class="instructions-title" id="instructions-title">
                 <span class="icon-wrap" aria-hidden="true"><i data-lucide="book-open" class="icon icon--md"></i></span>
-                <span>Kaip naudoti šią biblioteką</span>
+                <span>Kaip naudoti šią sistemą</span>
                 <span class="prompt-time" role="status" aria-label="Orientacinis laikas: 3–5 min per žingsnį">~3–5 min per žingsnį</span>
             </h2>
             <ol>
-                <li>Pasirink promptą ir spausk ant jo – tekstas pažymėsis</li>
-                <li>Spausk <strong>„Kopijuoti promptą“</strong> arba <code>Ctrl+C</code> / <code>Cmd+C</code></li>
-                <li>Įklijuok į ChatGPT, Claude ar kitą DI (dirbtinio intelekto) įrankį</li>
-                <li>Jei prompte yra <code>[įmonė]</code>, <code>[pozicija]</code>, <code>[atlygis]</code>, <code>[ ]</code> ar kiti laukai – pakeisk savo duomenimis. DI vaidmuo („Tu esi…“) keisti nereikia.</li>
+                <li>Pasirink fazę, paspausk ir atidaryk. Tada pasirink konkretų promptą.</li>
+                <li>Spausk <strong>„Kopijuoti promptą“</strong> arba <code>Ctrl+C</code> / <code>Cmd+C</code> ant pasirinkto prompto.</li>
+                <li>Įklijuok į ChatGPT, Claude ar kitą DI (dirbtinio intelekto) įrankį.</li>
+                <li>Jei prompte yra <code>[įmonė]</code>, <code>[pozicija]</code>, <code>[atlygis]</code>, <code>[ ]</code> ar kiti laukai – pakeisk savo duomenimis. DI vaidmens („Tu esi…“) keisti nereikia.</li>
             </ol>
         </section>
 
-        <!-- PROGRESS INDICATOR (S1) -->
+        <!-- PROGRESS INDICATOR (S1) – Sistema: X / 6 fazės -->
         <div class="progress-wrap" id="progressIndicator" aria-live="polite" aria-atomic="true">
-            <p id="progressText">Panaudojai 0 iš 10 promptų</p>
-            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10" aria-label="Progresas: 0 iš 10 promptų">
+            <p id="progressText">Sistema: 0 / 6 fazės</p>
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="6" aria-label="Progresas: 0 iš 6 fazių">
                 <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
             </div>
         </div>
 
-        <!-- PROMPT 1 -->
-        <article class="prompt">
+        <!-- PROMPT 1 – FAZĖ 1 Diagnostika -->
+        <article class="prompt" data-phase="1">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">1</div>
-                    <div class="category">Pradžia</div>
+                    <div class="number">FAZĖ 1</div>
+                    <div class="category">Diagnostika</div>
                     <span class="prompt-time">~5–10 min</span>
                 </div>
                 <h2 class="prompt-title">Kur stringame?</h2>
@@ -1823,12 +2070,12 @@ Pasakyk paprastai:
             </div>
         </article>
 
-        <!-- PROMPT 2 -->
-        <article class="prompt">
+        <!-- PROMPT 2 – FAZĖ 2 Profilis -->
+        <article class="prompt" data-phase="2">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">2</div>
-                    <div class="category">Pradžia</div>
+                    <div class="number">FAZĖ 2</div>
+                    <div class="category">Profilis</div>
                     <span class="prompt-time">~5–10 min</span>
                 </div>
                 <h2 class="prompt-title">Koks žmogus mums iš tikrųjų tinka?</h2>
@@ -1891,12 +2138,12 @@ Atsakyk paprastai:
             </div>
         </article>
 
-        <!-- PROMPT 3 -->
-        <article class="prompt">
+        <!-- PROMPT 3 – FAZĖ 3 Pritraukimas -->
+        <article class="prompt" data-phase="3">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">3</div>
-                    <div class="category">Pradžia</div>
+                    <div class="number">FAZĖ 3</div>
+                    <div class="category">Pritraukimas</div>
                     <span class="prompt-time">~3–5 min</span>
                 </div>
                 <h2 class="prompt-title">Perrašyk darbo skelbimą paprastai</h2>
@@ -1957,12 +2204,12 @@ Padaryk:
             </div>
         </article>
 
-        <!-- PROMPT 4 -->
-        <article class="prompt">
+        <!-- PROMPT 4 – FAZĖ 3 Pritraukimas -->
+        <article class="prompt" data-phase="3">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">4</div>
-                    <div class="category">Įgūdžiai</div>
+                    <div class="number">FAZĖ 3</div>
+                    <div class="category">Pritraukimas</div>
                     <span class="prompt-time">~3–5 min</span>
                 </div>
                 <h2 class="prompt-title">Kaip šiandien rasti daugiau žmonių?</h2>
@@ -2022,12 +2269,12 @@ Pasiūlyk:
             </div>
         </article>
 
-        <!-- PROMPT 5 -->
-        <article class="prompt">
+        <!-- PROMPT 5 – FAZĖ 4 Atranka -->
+        <article class="prompt" data-phase="4">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">5</div>
-                    <div class="category">Įgūdžiai</div>
+                    <div class="number">FAZĖ 4</div>
+                    <div class="category">Atranka</div>
                     <span class="prompt-time">~5–10 min</span>
                 </div>
                 <h2 class="prompt-title">Kaip geriau pravesti pokalbį?</h2>
@@ -2088,12 +2335,12 @@ Duok:
             </div>
         </article>
 
-        <!-- PROMPT 6 -->
-        <article class="prompt">
+        <!-- PROMPT 6 – FAZĖ 4 Atranka -->
+        <article class="prompt" data-phase="4">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">6</div>
-                    <div class="category">Įgūdžiai</div>
+                    <div class="number">FAZĖ 4</div>
+                    <div class="category">Atranka</div>
                     <span class="prompt-time">~5 min</span>
                 </div>
                 <h2 class="prompt-title">Kodėl kandidatai atsisako?</h2>
@@ -2155,12 +2402,12 @@ Duok:
             </div>
         </article>
 
-        <!-- PROMPT 7 -->
-        <article class="prompt">
+        <!-- PROMPT 7 – FAZĖ 5 Pasiūlymas -->
+        <article class="prompt" data-phase="5">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">7</div>
-                    <div class="category">Įgūdžiai</div>
+                    <div class="number">FAZĖ 5</div>
+                    <div class="category">Pasiūlymas</div>
                     <span class="prompt-time">~5 min</span>
                 </div>
                 <h2 class="prompt-title">Kaip geriau pristatyti pasiūlymą?</h2>
@@ -2221,12 +2468,12 @@ Padaryk:
             </div>
         </article>
 
-        <!-- PROMPT 8 -->
-        <article class="prompt">
+        <!-- PROMPT 8 – FAZĖ 6 Išlaikymas -->
+        <article class="prompt" data-phase="6">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">8</div>
-                    <div class="category">Plėtra</div>
+                    <div class="number">FAZĖ 6</div>
+                    <div class="category">Išlaikymas</div>
                     <span class="prompt-time">~5–10 min</span>
                 </div>
                 <h2 class="prompt-title">Kaip padėti naujam žmogui pirmus 3 mėnesius?</h2>
@@ -2287,12 +2534,12 @@ Duok:
             </div>
         </article>
 
-        <!-- PROMPT 9 -->
-        <article class="prompt">
+        <!-- PROMPT 9 – FAZĖ 6 Išlaikymas -->
+        <article class="prompt" data-phase="6">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">9</div>
-                    <div class="category">Plėtra</div>
+                    <div class="number">FAZĖ 6</div>
+                    <div class="category">Išlaikymas</div>
                     <span class="prompt-time">~5 min</span>
                 </div>
                 <h2 class="prompt-title">Kodėl žmonės išeina?</h2>
@@ -2351,12 +2598,12 @@ Pasakyk:
             </div>
         </article>
 
-        <!-- PROMPT 10 -->
-        <article class="prompt">
+        <!-- PROMPT 10 – FAZĖ 6 Išlaikymas -->
+        <article class="prompt" data-phase="6">
             <div class="prompt-header">
                 <div class="prompt-meta">
-                    <div class="number">10</div>
-                    <div class="category">Viskas kartu</div>
+                    <div class="number">FAZĖ 6</div>
+                    <div class="category">Išlaikymas</div>
                     <span class="prompt-time">~5–10 min</span>
                 </div>
                 <h2 class="prompt-title">Pagrindinis promptas (vienas viskam)</h2>
@@ -2426,29 +2673,8 @@ Be sudėtingų terminų.</pre>
             </div>
         </article>
 
-        <!-- KAS TOLIAU? (S2) -->
-        <section class="next-steps" aria-labelledby="next-steps-title">
-            <h2 id="next-steps-title">Kas toliau?</h2>
-            <p>Geriausia eiti iš eilės nuo 1 iki 10. Paspaudę nuorodą pereisi prie atitinkamo prompto.</p>
-            <div class="next-steps-links">
-                <a href="#block1">1. Kur stringame?</a>
-                <a href="#block2">2. Koks žmogus mums tinka?</a>
-                <a href="#block3">3. Perrašyk darbo skelbimą paprastai</a>
-                <a href="#block4">4. Kaip rasti daugiau žmonių?</a>
-                <a href="#block5">5. Kaip geriau pravesti pokalbį?</a>
-                <a href="#block6">6. Kodėl kandidatai atsisako?</a>
-                <a href="#block7">7. Kaip geriau pristatyti pasiūlymą?</a>
-                <a href="#block8">8. Kaip padėti naujam žmogui 3 mėn.?</a>
-                <a href="#block9">9. Kodėl žmonės išeina?</a>
-                <a href="#block10">10. Pagrindinis promptas (vienas viskam)</a>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <!-- BENDRUOMENĖ -->
         <section class="community" id="community" aria-labelledby="community-title">
-            <h2 id="community-title">Nori daugiau?<br>Prisijunk prie WhatsApp grupės.</h2>
-            <p>Bendros diskusijos, patarimai ir naujienos apie promptus ir DI.</p>
+            <h2 id="community-title">Sistema sukurta.<br>Nori daugiau?</h2>
             <a href="https://chat.whatsapp.com/It49fzTl1n90huRCoWWkwu?mode=gi_t" class="community-cta-primary" target="_blank" rel="noopener noreferrer" aria-label="Atidaryti Promptų anatomija WhatsApp grupę naujame lange">Prisijungti prie WhatsApp grupės</a>
             <a href="https://ditreneris.github.io/anatomija/" class="community-cta-secondary" target="_blank" rel="noopener noreferrer" aria-label="Pilna Promptų anatomija – interaktyvus mokymas (atidaroma naujame lange)">Promptų anatomija →</a>
         </section>
@@ -2456,7 +2682,7 @@ Be sudėtingų terminų.</pre>
         <footer class="footer">
             <h3>Sėkmės atrankoje <span class="icon-wrap" aria-hidden="true"><i data-lucide="rocket" class="icon icon--md"></i></span></h3>
             <p>Nepamiršk pakeisti <strong>[įmonė]</strong>, <strong>[pozicija]</strong>, <strong>[atlygis]</strong>, <strong>[kandidatų skaičius]</strong> ir kitus laukus savo duomenimis.</p>
-            <p class="footer-product-link">Tai Spin-off Nr. 3 iš „Promptų anatomijos“. Pilnas interaktyvus mokymas ir kiti kursai: <a href="https://ditreneris.github.io/anatomija/" target="_blank" rel="noopener noreferrer">Promptų anatomija →</a></p>
+            <p class="footer-product-link">Tai Spin-off Nr. 3 iš „Promptų anatomijos“.</p>
             <div class="tags" role="list">
                 <span class="tag" role="listitem"><span class="icon-wrap" aria-hidden="true"><i data-lucide="users" class="icon icon--sm"></i></span> HR atranka</span>
                 <span class="tag" role="listitem"><span class="icon-wrap" aria-hidden="true"><i data-lucide="book-marked" class="icon icon--sm"></i></span> 10 promptų</span>
@@ -2736,6 +2962,9 @@ Be sudėtingų terminų.</pre>
 
             // ===== "PAŽYMĖJAU KAIP ATLIKAU" – localStorage (M2) =====
             const PROMPT_DONE_KEY_PREFIX = 'di_prompt_done_';
+            // Fazių map: fazė 1..6 → promptų ID sąrašas (1..10)
+            var PHASE_TO_PROMPTS = { 1: [1], 2: [2], 3: [3, 4], 4: [5, 6], 5: [7], 6: [8, 9, 10] };
+
             function loadPromptDoneState() {
                 const checkboxes = document.querySelectorAll('.prompt-done');
                 checkboxes.forEach(function(cb) {
@@ -2763,17 +2992,226 @@ Be sudėtingų terminų.</pre>
                 return count;
             }
 
+            /** Fazė laikoma atlikta, kai visi tos fazės promptų checkbox'ai pažymėti. Grąžina 0..6. */
+            function getPhaseDoneCount() {
+                var phasesDone = 0;
+                try {
+                    for (var phase = 1; phase <= 6; phase++) {
+                        var promptIds = PHASE_TO_PROMPTS[phase];
+                        var allDone = promptIds.every(function(id) {
+                            return localStorage.getItem(PROMPT_DONE_KEY_PREFIX + id) === 'true';
+                        });
+                        if (allDone) phasesDone++;
+                    }
+                } catch (e) { /* ignore */ }
+                return phasesDone;
+            }
+
             function updateProgressIndicator() {
-                var count = getPromptDoneCount();
+                var phaseCount = getPhaseDoneCount();
                 var textEl = document.getElementById('progressText');
                 var fillEl = document.getElementById('progressBarFill');
                 var barEl = document.querySelector('.progress-bar[role="progressbar"]');
-                if (textEl) textEl.textContent = count === 10 ? 'Puiku – panaudojai visus 10.' : 'Panaudojai ' + count + ' iš 10 promptų.';
-                if (fillEl) fillEl.style.width = (count / 10 * 100) + '%';
-                if (barEl) {
-                    barEl.setAttribute('aria-valuenow', count);
-                    barEl.setAttribute('aria-label', 'Progresas: ' + count + ' iš 10 promptų');
+                if (textEl) {
+                    textEl.textContent = phaseCount === 6
+                        ? 'Puiku – atlikai visas 6 fazes.'
+                        : 'Sistema: ' + phaseCount + ' / 6 fazės';
                 }
+                if (fillEl) fillEl.style.width = (phaseCount / 6 * 100) + '%';
+                if (barEl) {
+                    barEl.setAttribute('aria-valuenow', phaseCount);
+                    barEl.setAttribute('aria-valuemax', 6);
+                    barEl.setAttribute('aria-label', 'Progresas: ' + phaseCount + ' iš 6 fazių');
+                }
+            }
+
+            // ===== 6 FAZIŲ AKORDEONAS (S0) =====
+            var PHASE_TITLES = {
+                1: 'Diagnostika',
+                2: 'Profilis',
+                3: 'Pritraukimas',
+                4: 'Atranka',
+                5: 'Pasiūlymas',
+                6: 'Išlaikymas'
+            };
+
+            function setupPhaseAccordion() {
+                var phases = [];
+
+                function isPhaseDone(phase) {
+                    try {
+                        var ids = PHASE_TO_PROMPTS[phase] || [];
+                        return ids.every(function(id) {
+                            return localStorage.getItem(PROMPT_DONE_KEY_PREFIX + id) === 'true';
+                        });
+                    } catch (e) {
+                        return false;
+                    }
+                }
+
+                var defaultOpenPhase = 1;
+                for (var p = 1; p <= 6; p++) {
+                    if (!isPhaseDone(p)) {
+                        defaultOpenPhase = p;
+                        break;
+                    }
+                }
+
+                for (var phase = 1; phase <= 6; phase++) {
+                    var phasePrompts = Array.prototype.slice.call(document.querySelectorAll('article.prompt[data-phase="' + phase + '"]'));
+                    if (!phasePrompts.length) continue;
+
+                    var firstPrompt = phasePrompts[0];
+                    var title = PHASE_TITLES[phase] || ('Fazė ' + phase);
+                    var count = phasePrompts.length;
+                    var countLabel = count === 1 ? '1 promptas' : (count + ' promptai');
+
+                    var section = document.createElement('section');
+                    section.className = 'phase';
+                    section.id = 'phase' + phase;
+                    section.setAttribute('data-phase', String(phase));
+
+                    var body = document.createElement('div');
+                    body.className = 'phase-body';
+                    body.id = 'phase' + phase + '-body';
+
+                    var btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'phase-header';
+                    btn.setAttribute('aria-controls', body.id);
+                    btn.innerHTML =
+                        '<span class="phase-badge">Fazė ' + phase + '</span>' +
+                        '<span class="phase-title">' + title + '</span>' +
+                        '<span class="phase-meta">' + countLabel + '</span>' +
+                        '<span class="phase-chevron" aria-hidden="true">▾</span>';
+
+                    section.appendChild(btn);
+                    section.appendChild(body);
+
+                    firstPrompt.parentNode.insertBefore(section, firstPrompt);
+                    phasePrompts.forEach(function(promptEl) {
+                        body.appendChild(promptEl);
+                    });
+
+                    phases.push({ phase: phase, section: section, button: btn, body: body });
+                }
+
+                function setOpen(phaseObj, open) {
+                    phaseObj.section.classList.toggle('is-open', open);
+                    phaseObj.body.hidden = !open;
+                    phaseObj.button.setAttribute('aria-expanded', open ? 'true' : 'false');
+                }
+
+                function closeAllExcept(phaseToKeepOpen) {
+                    phases.forEach(function(ph) {
+                        if (phaseToKeepOpen && ph.phase === phaseToKeepOpen.phase) return;
+                        setOpen(ph, false);
+                    });
+                }
+
+                // Iniciali būsena – atidaryti pirmą neatliktą fazę (arba 1)
+                phases.forEach(function(ph) {
+                    setOpen(ph, ph.phase === defaultOpenPhase);
+                });
+
+                // Header fazių navigacija hero bloke
+                var headerPhaseButtons = document.querySelectorAll('.header-phase-link[data-phase]');
+                function setActiveHeaderPhase(phaseNum) {
+                    headerPhaseButtons.forEach(function(btn) {
+                        var btnPhase = parseInt(btn.getAttribute('data-phase'), 10);
+                        if (btnPhase === phaseNum) {
+                            btn.classList.add('is-active');
+                        } else {
+                            btn.classList.remove('is-active');
+                        }
+                    });
+                }
+                setActiveHeaderPhase(defaultOpenPhase);
+
+                headerPhaseButtons.forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        var phaseNum = parseInt(btn.getAttribute('data-phase'), 10);
+                        var phaseObj = getPhaseObjByNumber(phaseNum);
+                        if (!phaseObj) return;
+                        closeAllExcept(phaseObj);
+                        setOpen(phaseObj, true);
+                        setActiveHeaderPhase(phaseNum);
+                        try {
+                            phaseObj.section.scrollIntoView({ block: 'start' });
+                        } catch (_) { /* ignore */ }
+                    });
+                });
+
+                phases.forEach(function(ph) {
+                    ph.button.addEventListener('click', function() {
+                        var isOpen = ph.button.getAttribute('aria-expanded') === 'true';
+                        if (isOpen) {
+                            setOpen(ph, false);
+                            return;
+                        }
+                        closeAllExcept(ph);
+                        setOpen(ph, true);
+                    });
+                });
+
+                function getPhaseObjBySection(sectionEl) {
+                    for (var i = 0; i < phases.length; i++) {
+                        if (phases[i].section === sectionEl) return phases[i];
+                    }
+                    return null;
+                }
+
+                function getPhaseObjByNumber(phaseNum) {
+                    for (var i = 0; i < phases.length; i++) {
+                        if (phases[i].phase === phaseNum) return phases[i];
+                    }
+                    return null;
+                }
+
+                function openPhaseForElement(el) {
+                    if (!el) return;
+                    var phaseSection = el.closest ? el.closest('.phase') : null;
+                    if (!phaseSection) return;
+                    var phaseObj = getPhaseObjBySection(phaseSection);
+                    if (!phaseObj) return;
+                    closeAllExcept(phaseObj);
+                    setOpen(phaseObj, true);
+                }
+
+                function openFromHash() {
+                    var hash = window.location.hash || '';
+                    if (!hash) return;
+
+                    // Jei tiesiogiai į fazę
+                    var phaseMatch = hash.match(/^#phase([1-6])$/);
+                    if (phaseMatch) {
+                        var phaseNum = parseInt(phaseMatch[1], 10);
+                        var target = document.getElementById('phase' + phaseNum);
+                        if (target) {
+                            var phaseObj = getPhaseObjByNumber(phaseNum);
+                            if (phaseObj) {
+                                closeAllExcept(phaseObj);
+                                setOpen(phaseObj, true);
+                                setTimeout(function() {
+                                    try { target.scrollIntoView({ block: 'start' }); } catch (_) { /* ignore */ }
+                                }, 0);
+                            }
+                        }
+                        return;
+                    }
+
+                    // Jei giliai į promptą / blocką
+                    var el = document.getElementById(hash.slice(1));
+                    if (el) {
+                        openPhaseForElement(el);
+                        setTimeout(function() {
+                            try { el.scrollIntoView({ block: 'start' }); } catch (_) { /* ignore */ }
+                        }, 0);
+                    }
+                }
+
+                window.addEventListener('hashchange', openFromHash);
+                openFromHash();
             }
 
             // ===== INICIALIZACIJA =====
@@ -2782,6 +3220,9 @@ Be sudėtingų terminų.</pre>
                 if (window.lucide && typeof window.lucide.createIcons === 'function') {
                     window.lucide.createIcons();
                 }
+
+                // S0: 6 fazių akordeonas (grupuoja promptus, bet palieka ID ir struktūrą)
+                setupPhaseAccordion();
 
                 // Pridėti klaviatūros navigaciją visiems code-block elementams
                 const codeBlocks = document.querySelectorAll('.code-block');
