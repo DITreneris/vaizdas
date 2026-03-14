@@ -27,7 +27,7 @@
 ### Prieš kiekvieną merge / PR
 
 - [ ] `npm test` praeina (struktūra + `lint:html` + `lint:js`).
-- [ ] `lint:html` – W3C/Nu validatorius; CSS `env()` nepripažįstamas, todėl safe-area naudoti ne index.html inline CSS (arba validatoriui ignoruoti žinomas klaidas).
+- [ ] `lint:html` – HTML validacija (W3C) šešiems puslapiams: `index.html`, `lt/index.html`, `en/index.html`, `privatumas.html`, `lt/privatumas.html`, `en/privacy.html`. CSS `env()` nepripažįstamas validatoriuje – safe-area ne index.html inline CSS (arba ignoruoti žinomas klaidas).
 - [ ] CI (`.github/workflows/ci.yml`) praeina – lint, testai, pa11y (WCAG2AA).
 - [ ] Pakeitimams atitinka dokumentacijos atnaujinimai ([docs/DOCUMENTATION.md](DOCUMENTATION.md)).
 
@@ -49,7 +49,7 @@
 | Komanda | Paskirtis |
 |---------|-----------|
 | `npm test` | Struktūros testai + HTML/JS lint |
-| `npm run lint:html` | HTML validacija (index.html) |
+| `npm run lint:html` | HTML validacija (6 puslapių: index, lt/, en/, privatumas) |
 | `npm run lint:js` | ESLint |
 | A11y lokaliai | `npx serve -s . -l 3000` + `npx pa11y http://localhost:3000/ --config .pa11yrc.json`. CI naudoja `.pa11yrc.json` (Chrome `--no-sandbox` ir kt.). |
 

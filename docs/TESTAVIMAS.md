@@ -7,7 +7,7 @@
 
 | Laukas | Reikšmė |
 |--------|--------|
-| Production URL | `https://<org-or-username>.github.io/<repo-name>/` |
+| Production URL | `https://ditreneris.github.io/vaizdas/` (repo: [DITreneris/vaizdas](https://github.com/DITreneris/vaizdas)) |
 | Naršyklė(ės) | Chrome, Firefox, Edge (pasirinktinai: Safari) |
 | Mobilus | Chrome Mobile / iOS Safari (pasirinktinai) |
 
@@ -15,7 +15,7 @@
 
 ### Funkcionalumas
 
-- [ ] **Mini generatorius:** preset’ai veikia, `MiniGenOutput` atsinaujina, „KOPIJUOTI PROMPTĄ“ kopijuoja tekstą.
+- [ ] **Mini generatorius:** preset’ai veikia, `#miniGenOutput` atsinaujina, „KOPIJUOTI PROMPTĄ“ kopijuoja tekstą.
 - [ ] **Šablonai:** kiekvieno šablono „Kopijuoti promptą“ kopijuoja teisingą `<pre>` tekstą.
 - [ ] **Viršutinis mygtukas:** „Kopijuoti promptą“ (sticky) veikia.
 - [ ] **Dark mode:** perjungimas veikia, kontrastas OK, focus-visible matomas.

@@ -92,8 +92,8 @@ ORCHESTRATOR AGENT (koordinacija)
 | Komanda | Paskirtis |
 |---------|-----------|
 | `npm install` | Įdiegti priklausomybes |
-| `npm test` | Struktūros testai + lint (HTML, JS) |
-| `npm run lint:html` | HTML validacija (index.html) |
+| `npm test` | Build + struktūros testai (tests/structure.test.js) + lint:html + lint:js |
+| `npm run lint:html` | HTML validacija (6 puslapių: index, lt/, en/, privatumas) |
 | `npm run lint:js` | ESLint visiems .js failams |
 | CI (GitHub Actions) | Lint, test, pa11y a11y – automatiškai push/PR |
 
@@ -107,7 +107,7 @@ Prieš PR įsitikinti, kad `npm test` praeina. A11y tikrinimas – per CI arba l
 2. Orchestrator → Content / UI/UX: reikiai (jei yra).
 3. Orchestrator → QA: release validacija.
 4. QA: `npm test`, CHANGELOG atnaujintas (SemVer), rankinis QA (naršyklės, mobilus, kopijavimas, a11y).
-5. QA pass → tag (pvz. `v1.x.0`), deploy. QA fail → grąžinti Content/UI.
+5. QA pass → tag (pvz. `v1.x.0`), deploy. Production repo: [DITreneris/vaizdas](https://github.com/DITreneris/vaizdas) → https://ditreneris.github.io/vaizdas/ . QA fail → grąžinti Content/UI.
 
 ---
 
@@ -117,7 +117,7 @@ Prieš PR įsitikinti, kad `npm test` praeina. A11y tikrinimas – per CI arba l
 - [docs/DOCUMENTATION.md](docs/DOCUMENTATION.md) – dokumentų valdymas, atsakomybės, archyvavimas
 - [docs/QA_STANDARTAS.md](docs/QA_STANDARTAS.md) – QA standartas (nuoroda į [DITreneris/spinoff01](https://github.com/DITreneris/spinoff01))
 - [docs/TESTAVIMAS.md](docs/TESTAVIMAS.md) – gyvo testavimo scenarijai ir žurnalas
-- [DEPLOYMENT.md](DEPLOYMENT.md) – deploy (GitHub Pages), post-deploy testavimas
+- [DEPLOYMENT.md](DEPLOYMENT.md) – deploy (GitHub Actions → GitHub Pages), [COLD_DEPLOY.md](COLD_DEPLOY.md), post-deploy testavimas
 - [CHANGELOG.md](CHANGELOG.md) – versijų pakeitimų istorija (Keep a Changelog)
 - [todo.md](todo.md) – artimiausi darbai
 - [roadmap.md](roadmap.md) – kryptis / vėlesni etapai

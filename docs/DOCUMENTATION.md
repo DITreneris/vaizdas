@@ -6,11 +6,12 @@
 
 | Sritis | Dokumentas | Kam skirta |
 |--------|------------|------------|
-| **Apžvalga** | `README.md` | Kas tai per projektas ir kaip naudoti |
+| **Apžvalga** | `README.md` | Kas tai per projektas, struktūra, skriptai, kaip naudoti |
 | **Užduotys** | `todo.md`, `roadmap.md` | Kas daroma dabar ir kas vėliau |
-| **Deploy** | `DEPLOYMENT.md` | Kaip deploy’inti į GitHub Pages |
+| **Deploy** | `DEPLOYMENT.md` | GitHub Pages (GitHub Actions), production: [vaizdas](https://github.com/DITreneris/vaizdas) |
+| **Cold deploy** | `COLD_DEPLOY.md` | Pirmas deploy į švarų repo (vaizdas), skriptas scripts/cold-deploy.sh |
 | **Versijos** | `CHANGELOG.md` | Pakeitimų istorija (SemVer) |
-| **Kokybė** | `docs/QA_STANDARTAS.md` | `npm test`, pa11y, kriterijai |
+| **Kokybė** | `docs/QA_STANDARTAS.md` | `npm test`, lint:html (6 puslapių), lint:js, pa11y |
 | **Testavimas** | `docs/TESTAVIMAS.md` | Gyvas testavimas po deploy |
 
 ## Archyvas

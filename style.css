@@ -944,8 +944,22 @@ body {
     margin-bottom: var(--space-24);
 }
 
-.prompt-library-body[hidden] {
+.prompt-library-body[hidden],
+.tools-body[hidden],
+.full-gen-body[hidden] {
     display: none;
+}
+
+/* Švelni atidarymo animacija – vartotojas mato, kad turinys „atsidaro“, ne tik „iššoka“ */
+.prompt-library-body:not([hidden]),
+.tools-body:not([hidden]),
+.full-gen-body:not([hidden]) {
+    animation: collapsible-reveal 0.22s ease-out;
+}
+
+@keyframes collapsible-reveal {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* ===== TOOLS (collapsible) ===== */

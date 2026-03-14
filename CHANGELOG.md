@@ -5,6 +5,8 @@ Formatas pagal [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), versija
 ## [Nereleisuota]
 
 ### Prideta
+- **Collapsible UX (išskleidimo disorientacija):** Paspaudus „Šablonai“ / „Generuok vaizdą“ / „Pro režimas“ atsidariusio turinio scroll į sekciją (`scrollIntoView` smooth) ir trumpa atidarymo animacija (opacity 0.22s). Žr. [docs/UI_UX_MICRO_AUDIT_COLLAPSIBLE.md](docs/UI_UX_MICRO_AUDIT_COLLAPSIBLE.md).
+- **Cold deploy:** `COLD_DEPLOY.md`, `scripts/cold-deploy.sh` – deploy į [DITreneris/vaizdas](https://github.com/DITreneris/vaizdas).
 - **UI/UX tobulinimai (vartotojo kelionė, premium SaaS):** Hero sumažintas (~25–35 %), CTA hierarchija (secondary outline vizualiai silpnesnis), sticky mygtukas pervadintas į „Pereiti prie prompto“ (scroll semantika), tools two-step aiškinimas (1. Pasirinkite įrankį, 2. Spauskite žemiau), Pro completion skaičiai (X/Y užpildyta, Paruošta X/Y), quality meter „Užpildyta: X/7“, copy success „Nukopijuota ✓“, badge sistema (info/success/warning/premium tokenai). Plačiau: [docs/UI_UX_MICRO_AUDIT_2026-03.md](docs/UI_UX_MICRO_AUDIT_2026-03.md) § Įgyvendinta.
 - Dokumentacija: atnaujintas `README.md`, pridėti `todo.md` ir `roadmap.md`.
 - LT/EN locale architektūra su `lang` perjungikliu, runtime lokalizacija ir build-time locale puslapiais (`lt/`, `en/`).
@@ -14,6 +16,8 @@ Formatas pagal [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), versija
 - Recommended tool golden path: `Ideogram` first-paint metu pažymėtas kaip default pasirinkimas su aiškesniu tools hint.
 
 ### Pakeista
+- **CI / Deploy:** GitHub Actions naudoja Node 24 ir `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` (`.github/workflows/ci.yml`, `deploy.yml`).
+- **Dokumentacija:** README, DEPLOYMENT, docs/DOCUMENTATION, QA_STANDARTAS, TESTAVIMAS, AGENTS atnaujinti pagal kodo bazę (struktūra, 6 puslapių lint, production vaizdas).
 - `README.md` sutvarkytas pagal dabartinį projektą (DI Vaizdo Generatorius).
 - Patikslintas vartotojo flow: aiškesnis perėjimas iš mini generatoriaus į įrankių sekciją ir Pro režimą.
 - Patobulinta a11y semantika: kalbos perjungiklis, theme toggle būsena, tool kortelių keyboard/radio elgsena, spalvų chip `aria-pressed`.

@@ -1,10 +1,12 @@
 # DI Vaizdo Generatorius – rinkodaros vizualų promptai
 
-Statinė HTML aplikacija: mini generatorius + paruošti šablonai rinkodaros vizualams. Pagrindinis kelias dabar yra `šablonas -> laukai -> prompt preview -> copy + open -> generatorius`.
+Statinė HTML aplikacija: mini generatorius, paruošti šablonai (4 kortelės), Pro režimas ir greitas kopijavimas į pasirinktą DI įrankį (6 įrankiai). Pagrindinis kelias: **šablonas / mini laukai → prompt preview → copy + open → generatorius**.
+
+**Production:** [DITreneris/vaizdas](https://github.com/DITreneris/vaizdas) → https://ditreneris.github.io/vaizdas/
+
+---
 
 ## Lokalus paleidimas
-
-- Atidaryk `index.html` naršyklėje, arba:
 
 ```bash
 npm install
@@ -12,27 +14,47 @@ npm run build
 npx serve -s . -l 3000
 ```
 
-## LT / EN puslapiai
+Arba atidaryk `index.html` tiesiogiai naršyklėje (locale puslapiai reikalauja build).
 
-- Root šablonas: `index.html`
-- LT build puslapis: `lt/index.html`
-- EN build puslapis: `en/index.html`
-- LT privatumas: `lt/privatumas.html`
-- EN privacy: `en/privacy.html`
+---
 
-Kalba sprendžiama taip:
+## Projekto struktūra
 
-- `/lt/` arba `/en/` locale path
-- `?lang=lt` arba `?lang=en`
-- `localStorage`
-- `navigator.language`
+| Kelias | Aprašymas |
+|--------|------------|
+| `index.html` | Šaltinis šablonas (LT). Naudojamas kaip pagrindinis puslapis ir kaip įvestis build skriptui. |
+| `lt/`, `en/` | Locale puslapiai: generuojami `npm run build` iš `index.html` ir `privatumas.html`. `lt/index.html`, `en/index.html`, `lt/privatumas.html`, `en/privacy.html`. |
+| `generator.js` | Interaktyvus promptų generatorius: mini + Pro režimas, LT/EN perjungimas, `activePromptSource` (mini/full), state į `localStorage`, 6 įrankiai, kopijavimas. |
+| `copy.js` | Kopijavimas į clipboard, toast pranešimai, `copyPrompt()` / `selectText()`, accordion būsena. |
+| `style.css` | Dizainas, dark mode, responsive. |
+| `scripts/build-locale-pages.js` | Build: generuoja `lt/` ir `en/` iš root šablono; naudoja `BASE_PATH` ir `SITE_ORIGIN` (CI/deploy). |
+| `tests/structure.test.js` | Struktūriniai testai: ID, nuorodos, locale build išvestis, `generator.js` / `copy.js` priklausomybės. |
+| `privatumas.html` | Root privatumo politika (be duomenų rinkimo). |
 
-Papildomai:
+Ikonos: **Lucide** (CDN, `unpkg.com/lucide`).
 
-- `/en/` first-paint yra pilnai sugeneruotas anglų kalba dar prieš `generator.js`
-- root puslapis canonical/hreflang lygyje rodo į locale build puslapius
-- aktyvus prompto šaltinis (`mini` / `Pro`) saugomas aiškiai ir naudojamas tools CTA logikai
-- tools sekcijoje pagal nutylėjimą parenkamas `Ideogram` kaip rekomenduojamas starto įrankis
+---
+
+## LT / EN
+
+- Kalba: `/lt/`, `/en/` (path), `?lang=lt` / `?lang=en`, `localStorage` (`di_generator_locale_v1`), `navigator.language`.
+- Root `index.html` turi `lang="lt"`, canonical/hreflang rodo į `./lt/` ir `./en/`.
+- `/en/` first-paint – pilnas EN tekstas dar prieš `generator.js` (build laiko pakeitimai).
+- Aktyvus prompto šaltinis (`mini` / `full`) saugomas ir naudojamas sticky/tools CTA; tools pagal nutylėjimą – **Ideogram** (rekomenduojama).
+
+---
+
+## NPM skriptai
+
+| Skriptas | Veiksmai |
+|----------|----------|
+| `npm run build` | `node scripts/build-locale-pages.js` – generuoja `lt/`, `en/`. |
+| `npm test` | Build → `tests/structure.test.js` → `lint:html` → `lint:js`. |
+| `npm run test:structure` | Build + tik struktūros testai. |
+| `npm run lint:html` | HTML validacija (W3C): `index.html`, `lt/index.html`, `en/index.html`, `privatumas.html`, `lt/privatumas.html`, `en/privacy.html`. |
+| `npm run lint:js` | ESLint visiems `.js` failams. |
+
+---
 
 ## QA (prieš deploy)
 
@@ -42,15 +64,22 @@ npm run build
 npm test
 ```
 
+Detaliau: [docs/QA_STANDARTAS.md](docs/QA_STANDARTAS.md). A11y lokaliai: [DEPLOYMENT.md](DEPLOYMENT.md#prieš-deploy-lokaliai).
+
+---
+
 ## Deploy
 
-Deploy per GitHub Pages (GitHub Actions). Instrukcijos ir production URL: `DEPLOYMENT.md`.
+GitHub Pages per GitHub Actions. Instrukcijos, production URL ir cold deploy: [DEPLOYMENT.md](DEPLOYMENT.md), [COLD_DEPLOY.md](COLD_DEPLOY.md).
 
-## Svarbiausi failai
+---
 
-- `index.html`: UI (mini generatorius + šablonų biblioteka)
-- `generator.js`: interaktyvus promptų generatorius, LT/EN locale logika, active prompt source modelis, state išsaugojimas
-- `copy.js`: kopijavimas + toast + UX
-- `style.css`: dizaino sistema + dark mode
-- `scripts/build-locale-pages.js`: build-time LT/EN puslapių generavimas
-- `privatumas.html`: root privatumo politika (be duomenų rinkimo)
+## Svarbiausi failai (santrauka)
+
+- **UI / šablonas:** `index.html` (mini generatorius, 4 šablonai, tools sekcija, Pro režimas).
+- **Logika:** `generator.js` (mini + full state, locale, activePromptSource, tools, copy integracija).
+- **Kopijavimas / UX:** `copy.js` (toast, `copyPrompt`, `selectText`, hiddenTextarea).
+- **Stiliai:** `style.css`.
+- **Build:** `scripts/build-locale-pages.js` (BASE_PATH, SITE_ORIGIN).
+- **Testai:** `tests/structure.test.js`.
+- **Privatumas:** `privatumas.html` (root); locale variantai – build išvestis.

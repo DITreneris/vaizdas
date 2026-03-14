@@ -16,10 +16,10 @@
 ## GitHub Pages (GitHub Actions)
 
 1. Repo Settings → Pages → **Build and deployment** → Source: **GitHub Actions**
-2. Push į `main` automatiškai paleidžia:
-   - build (`npm run build`)
-   - testus (`npm test`)
-   - deploy į GitHub Pages (žr. `.github/workflows/deploy.yml`)
+2. Push į `main` automatiškai paleidžia workflow `.github/workflows/deploy.yml`:
+   - job **test**: `npm test` (build + structure testai + lint:html + lint:js)
+   - job **deploy**: build, upload-pages-artifact, deploy-pages
+   - Runner naudoja **Node 24** ir `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24` (žr. workflow)
 
 ## Prieš deploy (lokaliai)
 
@@ -61,5 +61,6 @@ npx pa11y http://localhost:3000/en/privacy.html --config .pa11yrc.json
 
 | Problema | Sprendimas |
 |----------|------------|
-| Pages rodo 404 | Patikrinti, ar Pages šaltinis = **GitHub Actions**. |
-| Nepraeina deploy | Actions → atidaryti run → pirmiausia sutaisyti `npm test`. |
+| Pages rodo 404 | Repo **Settings → Pages** → Source: **GitHub Actions**. Jei deploy 404: [vaizdas/settings/pages](https://github.com/DITreneris/vaizdas/settings/pages). |
+| Deploy 404 „Creating Pages deployment failed“ | Pages dar neįjungtas šiam repo. Įjunk **Settings → Pages → Source: GitHub Actions**, tada per paleisk workflow. |
+| Nepraeina deploy | Actions → atidaryti run → pirmiausia sutaisyti `npm test` (struktūra, lint:html, lint:js). |

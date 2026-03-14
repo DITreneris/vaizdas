@@ -293,6 +293,14 @@
             });
             setStoredAccordionId(foundOpen ? targetId : '');
             updateHeroActiveStep(targetId || 'miniGenerator');
+            if (foundOpen && targetId) {
+                requestAnimationFrame(function () {
+                    var section = document.getElementById(targetId);
+                    if (section && section.scrollIntoView) {
+                        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
         }
 
         function toggleItem(targetId) {
