@@ -2094,6 +2094,8 @@ body {
 }
 
 @media (max-width: 480px) {
+    body { padding-top: 100px; }
+    #main-content { scroll-margin-top: 100px; }
     .container { padding: 24px 16px; }
     .header { padding: 18px 16px; }
     .top-nav-inner { flex-wrap: wrap; }
@@ -2121,7 +2123,12 @@ body {
     .mini-gen-next-btn,
     .mini-gen-next-secondary { width: 100%; }
     .generator-step { padding: var(--space-20) var(--space-16); }
+    .generator-step h3 { font-size: 17px; line-height: 1.35; }
+    .generator-form { gap: var(--space-24); }
     .generator-output { padding: var(--space-24) var(--space-16); }
+    .generator-output-text { font-size: 16px; line-height: 1.5; }
+    .field-label { font-size: 13px; line-height: 1.4; }
+    .field-help { font-size: 12px; margin-top: 8px; }
     .footer { padding: 24px 16px; }
 }
 
