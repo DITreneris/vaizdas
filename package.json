@@ -1,19 +1,20 @@
 {
-  "name": "di-promptu-biblioteka",
+  "name": "di-vaizdo-generatorius",
   "version": "1.0.0",
   "private": true,
-  "description": "DI Promptų Biblioteka – statinė HTML platforma",
+  "description": "DI Vaizdo Generatorius – statinė HTML aplikacija rinkodaros vizualų promptams",
   "scripts": {
-    "test": "node tests/structure.test.js && npm run lint:html && npm run lint:js",
-    "test:structure": "node tests/structure.test.js",
-    "lint:html": "npx html-validator-cli --file index.html",
+    "build": "node scripts/build-locale-pages.js",
+    "test": "npm run build && node tests/structure.test.js && npm run lint:html && npm run lint:js",
+    "test:structure": "npm run build && node tests/structure.test.js",
+    "lint:html": "npx html-validator-cli --file index.html && npx html-validator-cli --file lt/index.html && npx html-validator-cli --file en/index.html && npx html-validator-cli --file privatumas.html && npx html-validator-cli --file lt/privatumas.html && npx html-validator-cli --file en/privacy.html",
     "lint:js": "eslint . --ext .js"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
     "html-validator-cli": "^7.0.0",
     "pa11y": "^6.2.3",
-"serve": "^14.2.1",
+    "serve": "^14.2.1",
     "wait-on": "^8.0.1"
-    }
+  }
 }

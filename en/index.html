@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>AI Visual Generator – marketing image prompts</title>
+    <meta name="description" content="Create AI image prompts for marketing visuals with a mini generator, template library, Pro mode, and quick copy to your chosen tool.">
+    <link rel="canonical" href="/en/">
+    <link rel="alternate" hreflang="lt" href="/lt/">
+    <link rel="alternate" hreflang="en" href="/en/">
+    <link rel="alternate" hreflang="x-default" href="/lt/">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <nav class="top-nav" aria-label="Quick navigation">
+        <div class="top-nav-inner">
+            <a href="#main-content" class="top-nav-brand">AI Visual Generator</a>
+            <div class="top-nav-actions">
+                <div class="top-nav-lang" role="group" aria-label="Language selection">
+                    <button type="button" class="top-nav-lang-btn" id="langLtBtn" aria-label="Switch to Lithuanian" aria-pressed="false">LT</button>
+                    <button type="button" class="top-nav-lang-btn is-active" id="langEnBtn" aria-label="Switch to English" aria-pressed="true">EN</button>
+                </div>
+                <button type="button" class="top-nav-icon-btn" id="themeToggleBtn" aria-label="Switch to dark mode" aria-pressed="false">
+                    <i data-lucide="moon" class="icon icon--sm"></i>
+                </button>
+                <div class="top-nav-copy-wrap">
+                    <span class="top-nav-copy-meta" id="stickyCopyMeta">Active prompt: Mini</span>
+                    <button type="button" class="top-nav-copy-btn" id="stickyCopyBtn">Go to prompt</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <main id="main-content">
+
+        <!-- HERO -->
+        <header class="header">
+            <div class="header-badges">
+                <a href="https://promptanatomy.app/" class="badge badge--resource" target="_blank" rel="noopener noreferrer" aria-label="Full Prompt Anatomy – interactive learning (opens in a new tab)">Prompt Anatomy</a>
+                <span class="badge badge--series" role="status" aria-label="AI Visual Generator, Spin-off No. 5">Spin-off No. 5</span>
+            </div>
+            <h1>AI Visual Generator</h1>
+            <p>Create professional marketing visuals with AI in under a minute.</p>
+            <ul class="header-steps" aria-label="Process steps">
+                <li><a href="#miniGenerator" class="header-step is-active"><span class="header-step-num">1</span> Create prompt</a></li>
+                <li><a href="#promptLibrary" class="header-step"><span class="header-step-num">2</span> Templates</a></li>
+                <li><a href="#tools" class="header-step"><span class="header-step-num">3</span> Generate the image</a></li>
+                <li><a href="#fullGenerator" class="header-step"><span class="header-step-num">4</span> Pro mode</a></li>
+            </ul>
+            <div class="header-cta">
+                <a href="#miniGenerator" class="cta-button" aria-label="Start creating with the interactive generator">Start creating</a>
+                <a href="#promptLibrary" class="cta-button-outline" aria-label="Browse ready-made templates">Ready-made templates ↓</a>
+            </div>
+        </header>
+
+        <!-- MINI GENERATOR -->
+        <section class="mini-generator" id="miniGenerator">
+            <div class="section-header-row">
+                <span class="step-badge" aria-hidden="true">1</span>
+                <div class="section-header-text">
+                    <span class="collapsible-title">Create prompt</span>
+                    <span class="collapsible-value">Fill in the fields or choose a template — the prompt updates automatically</span>
+                </div>
+            </div>
+            <div class="mini-gen-presets">
+                <h2>Start from a template</h2>
+                <div class="mini-gen-preset-grid">
+                    <button type="button" class="mini-gen-preset-btn" data-preset="ecommerce">
+                        <i data-lucide="shopping-bag" class="icon icon--md"></i>
+                        <span>E-commerce</span>
+                    </button>
+                    <button type="button" class="mini-gen-preset-btn" data-preset="events">
+                        <i data-lucide="calendar" class="icon icon--md"></i>
+                        <span>Event</span>
+                    </button>
+                    <button type="button" class="mini-gen-preset-btn" data-preset="brand">
+                        <i data-lucide="award" class="icon icon--md"></i>
+                        <span>Brand campaign</span>
+                    </button>
+                    <button type="button" class="mini-gen-preset-btn" data-preset="social">
+                        <i data-lucide="share-2" class="icon icon--md"></i>
+                        <span>Social media</span>
+                    </button>
+                </div>
+            </div>
+            <div class="mini-gen-form">
+                <div class="mini-gen-field mini-gen-field-full">
+                    <label class="field-label" for="mini-object">What is shown (main object)</label>
+                    <textarea id="mini-object" name="mini-object" class="field-textarea" rows="2" placeholder="Describe the object"></textarea>
+                    <div class="field-help">Example: Luxury wristwatch on a marble table</div>
+                </div>
+                <div class="mini-gen-field">
+                    <label class="field-label" for="mini-style">Style</label>
+                    <select id="mini-style" name="mini-style" class="field-select">
+                        <option value="photo">Realistic photo</option>
+                        <option value="render3d">3D render (studio)</option>
+                        <option value="cinematic">Cinematic style</option>
+                        <option value="editorial">Editorial magazine style</option>
+                        <option value="illustration">Minimal illustration</option>
+                    </select>
+                </div>
+                <div class="mini-gen-field">
+                    <label class="field-label" for="mini-lighting">Lighting</label>
+                    <select id="mini-lighting" name="mini-lighting" class="field-select">
+                        <option value="cinematic">Cinematic lighting</option>
+                        <option value="soft_daylight">Soft daylight</option>
+                        <option value="golden_hour">Golden hour</option>
+                        <option value="studio">Studio lighting</option>
+                        <option value="neon">Neon lighting</option>
+                    </select>
+                </div>
+                <div class="mini-gen-field">
+                    <label class="field-label" for="mini-platform">Platform</label>
+                    <select id="mini-platform" name="mini-platform" class="field-select">
+                        <option value="instagram">Instagram</option>
+                        <option value="linkedin">LinkedIn post</option>
+                        <option value="facebook">Facebook ad</option>
+                        <option value="web_hero">Web hero banner</option>
+                        <option value="print">Outdoor print</option>
+                    </select>
+                    <div class="field-help">Platform affects the suggested format and visual treatment</div>
+                </div>
+                <div class="mini-gen-field">
+                    <label class="field-label" for="mini-color">Dominant color</label>
+                    <div class="color-chips" role="group" aria-label="Color selection" data-target="mini-color">
+                        <button type="button" class="color-chip" data-color-key="gold" data-color="Warm golden tones" style="--chip-color: #D4A017">Gold</button>
+                        <button type="button" class="color-chip" data-color-key="blue" data-color="Deep blue" style="--chip-color: #1E3A8A">Blue</button>
+                        <button type="button" class="color-chip" data-color-key="pastel" data-color="Soft pastel pink" style="--chip-color: #F9A8D4">Pastel</button>
+                        <button type="button" class="color-chip" data-color-key="coral" data-color="Vivid coral" style="--chip-color: #F56565">Coral</button>
+                        <button type="button" class="color-chip" data-color-key="green" data-color="Nature green" style="--chip-color: #38A169">Green</button>
+                        <button type="button" class="color-chip" data-color-key="violet" data-color="Violet" style="--chip-color: #7C3AED">Violet</button>
+                        <button type="button" class="color-chip" data-color-key="neutral" data-color="Neutral grey tones" style="--chip-color: #6B7280">Neutral</button>
+                    </div>
+                    <input type="text" id="mini-color" name="mini-color" class="field-input" placeholder="Or enter your own color">
+                </div>
+            </div>
+            <div class="mini-gen-output" role="region" aria-label="Mini generator prompt">
+                <div class="mini-gen-output-text" id="miniGenOutput" aria-live="polite">
+                    Realistic photo: [Object]. Cinematic lighting, highly detailed, top quality, professional composition, designed for Instagram.
+                </div>
+                <button type="button" class="mini-gen-copy-btn" id="miniGenCopyBtn" aria-label="Copy the mini generator prompt">
+                    <i data-lucide="copy" class="icon icon--sm"></i>
+                    <span>COPY PROMPT</span>
+                </button>
+            </div>
+            <div class="mini-gen-next" id="miniGenNext">
+                <p class="mini-gen-next-label">Next: choose an AI image tool or move to Pro mode if you need more control.</p>
+                <div class="mini-gen-next-actions">
+                    <button type="button" class="mini-gen-next-btn" id="miniToToolsBtn">2. Choose a tool</button>
+                    <button type="button" class="mini-gen-next-secondary" id="miniToProBtn">Move to Pro mode</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMPT LIBRARY -->
+        <section class="prompt-library" id="promptLibrary">
+            <h2 class="collapsible-heading">
+                <button class="collapsible-toggle" id="promptLibraryToggle" type="button" aria-expanded="false" aria-controls="promptLibraryBody">
+                    <span class="step-badge" aria-hidden="true">2</span>
+                    <span class="collapsible-title">Templates</span>
+                    <span class="collapsible-value">Pick a ready-made prompt and copy it in one click</span>
+                    <span class="collapsible-count">4 templates</span>
+                    <span class="collapsible-chevron" aria-hidden="true">▾</span>
+                </button>
+            </h2>
+            <div class="prompt-library-body" id="promptLibraryBody" hidden>
+
+            <article class="prompt">
+                <div class="prompt-header">
+                    <h3 class="prompt-title">Product shot (close-up)</h3>
+                    <p class="prompt-desc">Professional product photography with studio quality</p>
+                </div>
+                <div class="prompt-body">
+                    <div class="code-block" id="block1" role="button" tabindex="0" aria-label="Select prompt 1" onclick="selectText(this)" onkeydown="handleCodeBlockKeydown(event, this)">
+                        <span class="code-block-toolbar" aria-hidden="true"><i data-lucide="copy" class="icon icon--sm"></i> Select</span>
+                        <pre class="code-text" id="prompt1">Realistic product photo: [object, e.g. a luxury wristwatch] on [surface, e.g. a dark marble table]. Close-up, cinematic lighting with a soft rim light from the left, [color palette, e.g. warm golden tones], highly detailed, top quality, professional composition, shallow depth of field, bokeh background, studio quality, 8K resolution.</pre>
+                    </div>
+                    <p class="prompt-hint">Replace: [object], [surface], [color palette] with your details.</p>
+                </div>
+                <div class="prompt-footer">
+                    <button class="btn" onclick="copyPrompt(this, 'prompt1')" aria-label="Copy prompt 1 to clipboard" data-prompt-id="prompt1">
+                        <span aria-hidden="true"><i data-lucide="copy" class="icon icon--sm"></i></span>
+                        <span>Copy prompt</span>
+                    </button>
+                </div>
+            </article>
+
+            <article class="prompt">
+                <div class="prompt-header">
+                    <h3 class="prompt-title">Lifestyle / atmosphere visual</h3>
+                    <p class="prompt-desc">Emotional visual with people and mood</p>
+                </div>
+                <div class="prompt-body">
+                    <div class="code-block" id="block2" role="button" tabindex="0" aria-label="Select prompt 2" onclick="selectText(this)" onkeydown="handleCodeBlockKeydown(event, this)">
+                        <span class="code-block-toolbar" aria-hidden="true"><i data-lucide="copy" class="icon icon--sm"></i> Select</span>
+                        <pre class="code-text" id="prompt2">Editorial magazine style: [scene, e.g. a young woman smiling in a coffee shop with a laptop]. Golden hour lighting, wide angle, warm tones, natural pose, candid photography style, editorial fashion magazine quality, soft golden backlight, [mood colors, e.g. warm autumn tones], professional lifestyle photography, high-end advertising quality.</pre>
+                    </div>
+                    <p class="prompt-hint">Replace: [scene], [mood colors] with your details.</p>
+                </div>
+                <div class="prompt-footer">
+                    <button class="btn" onclick="copyPrompt(this, 'prompt2')" aria-label="Copy prompt 2 to clipboard" data-prompt-id="prompt2">
+                        <span aria-hidden="true"><i data-lucide="copy" class="icon icon--sm"></i></span>
+                        <span>Copy prompt</span>
+                    </button>
+                </div>
+            </article>
+
+            <article class="prompt">
+                <div class="prompt-header">
+                    <h3 class="prompt-title">Ad layout with headline</h3>
+                    <p class="prompt-desc">Visual with integrated text, ready for ads</p>
+                </div>
+                <div class="prompt-body">
+                    <div class="code-block" id="block3" role="button" tabindex="0" aria-label="Select prompt 3" onclick="selectText(this)" onkeydown="handleCodeBlockKeydown(event, this)">
+                        <span class="code-block-toolbar" aria-hidden="true"><i data-lucide="copy" class="icon icon--sm"></i> Select</span>
+                        <pre class="code-text" id="prompt3">Advertising layout with integrated text: professional visual featuring [object/scene]. Headline: "[headline, e.g. Experience luxury]" and call to action "[CTA, e.g. Learn more]". Font style: modern sans-serif, bold. Text position: [center / top section / bottom third]. Requirement: strong contrast between text and background, clean space around the text for readability, clean negative space for text overlay, professional advertising layout, premium quality.</pre>
+                    </div>
+                    <p class="prompt-hint">Replace: [object/scene], [headline], [CTA], and text position with your details.</p>
+                </div>
+                <div class="prompt-footer">
+                    <button class="btn" onclick="copyPrompt(this, 'prompt3')" aria-label="Copy prompt 3 to clipboard" data-prompt-id="prompt3">
+                        <span aria-hidden="true"><i data-lucide="copy" class="icon icon--sm"></i></span>
+                        <span>Copy prompt</span>
+                    </button>
+                </div>
+            </article>
+
+            <article class="prompt">
+                <div class="prompt-header">
+                    <h3 class="prompt-title">LinkedIn / web banner</h3>
+                    <p class="prompt-desc">Professional wide-format banner</p>
+                </div>
+                <div class="prompt-body">
+                    <div class="code-block" id="block4" role="button" tabindex="0" aria-label="Select prompt 4" onclick="selectText(this)" onkeydown="handleCodeBlockKeydown(event, this)">
+                        <span class="code-block-toolbar" aria-hidden="true"><i data-lucide="copy" class="icon icon--sm"></i> Select</span>
+                        <pre class="code-text" id="prompt4">Professional LinkedIn banner: [service/product theme, e.g. a startup team at work]. Format 1200x627 (horizontal), professional atmosphere, soft daylight, clean blue-grey tones, corporate style, clean negative space on the left for text overlay, modern business photography, professional LinkedIn advertising format, subtle gradient background, premium B2B visual.</pre>
+                    </div>
+                    <p class="prompt-hint">Replace: [service/product theme] with your details. For web hero, switch the format to 16:9.</p>
+                </div>
+                <div class="prompt-footer">
+                    <button class="btn" onclick="copyPrompt(this, 'prompt4')" aria-label="Copy prompt 4 to clipboard" data-prompt-id="prompt4">
+                        <span aria-hidden="true"><i data-lucide="copy" class="icon icon--sm"></i></span>
+                        <span>Copy prompt</span>
+                    </button>
+                </div>
+            </article>
+
+            </div>
+        </section>
+
+        <!-- TOOLS SECTION -->
+        <section class="tools-section" id="tools" aria-label="AI image generation tools">
+            <h2 class="collapsible-heading">
+                <button class="collapsible-toggle" id="toolsToggle" type="button" aria-expanded="false" aria-controls="toolsBody">
+                    <span class="step-badge" aria-hidden="true">3</span>
+                    <span class="collapsible-title">Generate the image</span>
+                    <span class="collapsible-value">Choose a tool, then copy and open it with one button</span>
+                    <span class="collapsible-count">6 tools</span>
+                    <span class="collapsible-chevron" aria-hidden="true">▾</span>
+                </button>
+            </h2>
+            <div class="tools-body" id="toolsBody" hidden>
+                <div class="tools-section-header">
+                    <h2>Choose a generator</h2>
+                    <p>1. Choose a tool above. 2. Press the button below — we will copy the prompt and open the tool in a new tab.</p>
+                </div>
+                <div class="tool-grid" role="radiogroup" aria-label="AI image generation tools">
+                    <button type="button" class="tool-card tool-card-recommended is-selected" data-tool="ideogram" data-url="https://ideogram.ai/" role="radio" aria-checked="true" aria-label="Choose Ideogram – best for text" tabindex="0">
+                        <span class="tool-card-badge pill pill--premium">Recommended</span>
+                        <span class="tool-card-icon" aria-hidden="true"><i data-lucide="pen-tool" class="icon icon--md"></i></span>
+                        <span class="tool-card-name">Ideogram</span>
+                        <span class="tool-card-desc">Best for text</span>
+                    </button>
+                    <button type="button" class="tool-card" data-tool="leonardo" data-url="https://leonardo.ai/" role="radio" aria-checked="false" aria-label="Choose Leonardo.ai – maximum control" tabindex="-1">
+                        <span class="tool-card-icon" aria-hidden="true"><i data-lucide="sparkles" class="icon icon--md"></i></span>
+                        <span class="tool-card-name">Leonardo.ai</span>
+                        <span class="tool-card-desc">Maximum control</span>
+                    </button>
+                    <button type="button" class="tool-card" data-tool="midjourney" data-url="https://www.midjourney.com/" role="radio" aria-checked="false" aria-label="Choose Midjourney – top quality" tabindex="-1">
+                        <span class="tool-card-icon" aria-hidden="true"><i data-lucide="compass" class="icon icon--md"></i></span>
+                        <span class="tool-card-name">Midjourney</span>
+                        <span class="tool-card-desc">Top quality</span>
+                    </button>
+                    <button type="button" class="tool-card" data-tool="chatgpt" data-url="https://chat.openai.com/" role="radio" aria-checked="false" aria-label="Choose ChatGPT / DALL-E – fast and simple" tabindex="-1">
+                        <span class="tool-card-icon" aria-hidden="true"><i data-lucide="bot" class="icon icon--md"></i></span>
+                        <span class="tool-card-name">ChatGPT / DALL-E</span>
+                        <span class="tool-card-desc">Fast and simple</span>
+                    </button>
+                    <button type="button" class="tool-card" data-tool="firefly" data-url="https://firefly.adobe.com/" role="radio" aria-checked="false" aria-label="Choose Adobe Firefly – commercial use" tabindex="-1">
+                        <span class="tool-card-icon" aria-hidden="true"><i data-lucide="wand-sparkles" class="icon icon--md"></i></span>
+                        <span class="tool-card-name">Adobe Firefly</span>
+                        <span class="tool-card-desc">Commercial use</span>
+                    </button>
+                    <button type="button" class="tool-card" data-tool="canva" data-url="https://www.canva.com/" role="radio" aria-checked="false" aria-label="Choose Canva Magic – design workflow" tabindex="-1">
+                        <span class="tool-card-icon" aria-hidden="true"><i data-lucide="palette" class="icon icon--md"></i></span>
+                        <span class="tool-card-name">Canva Magic</span>
+                        <span class="tool-card-desc">Design workflow</span>
+                    </button>
+                </div>
+                <div class="tools-action-bar" id="toolsActionBar">
+                    <span class="tools-action-hint" id="toolsActionHint">We recommend starting with Ideogram because it handles text especially well. Active prompt: mini prompt.</span>
+                    <button type="button" class="tools-action-cta" id="toolsActionCta" disabled aria-label="Copy prompt and open the selected tool">
+                        <i data-lucide="copy" class="icon icon--sm"></i>
+                        <span>Copy + open</span>
+                        <i data-lucide="external-link" class="icon icon--sm"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FULL GENERATOR (collapsible) -->
+        <section class="full-generator" id="fullGenerator">
+            <h2 class="collapsible-heading">
+                <button class="collapsible-toggle" id="fullGenToggle" type="button" aria-expanded="false" aria-controls="fullGenBody">
+                    <span class="step-badge" aria-hidden="true">4</span>
+                    <span class="collapsible-title">Pro mode</span>
+                    <span class="collapsible-value">More control: extra parameters and higher precision</span>
+                    <span class="collapsible-chevron" aria-hidden="true">▾</span>
+                </button>
+            </h2>
+            <div class="full-gen-body" id="fullGenBody" hidden>
+                <div class="full-gen-actions">
+                    <button type="button" class="full-gen-transfer-btn" id="fullGenTransferBtn">
+                        <i data-lucide="arrow-down-circle" class="icon icon--sm"></i>
+                        Import values from mini generator
+                    </button>
+                    <button type="button" class="preset-btn preset-btn-reset" id="generatorResetBtn">Reset</button>
+                </div>
+                <div class="generator" id="generator" role="region" aria-label="Interactive visual prompt generator">
+                    <div class="generator-form">
+                        <div class="generator-step" data-step="1">
+                            <div class="generator-step-header">
+                                <div class="generator-step-icon"><i data-lucide="layout" class="icon icon--md"></i></div>
+                                <h3>1. Campaign context</h3>
+                                <span class="step-status" id="stepStatus1">Incomplete</span>
+                            </div>
+                            <div class="generator-fields">
+                                <div>
+                                    <label class="field-label" for="gen-goal">Campaign goal</label>
+                                    <input type="text" id="gen-goal" name="goal" class="field-input" placeholder="Describe the goal">
+                                    <div class="field-help">Example: Launching a new product, seasonal sale</div>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-platform">Target platform</label>
+                                    <select id="gen-platform" name="platform" class="field-select">
+                                        <option value="instagram">Instagram</option>
+                                        <option value="linkedin">LinkedIn post</option>
+                                        <option value="facebook">Facebook ad</option>
+                                        <option value="web_hero">Web hero banner</option>
+                                        <option value="print">Outdoor print</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-audience">Audience</label>
+                                    <input type="text" id="gen-audience" name="audience" class="field-input" placeholder="Describe the audience">
+                                    <div class="field-help">Example: Young families, Gen Z, professionals aged 25-40</div>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-tone">Brand tone</label>
+                                    <select id="gen-tone" name="tone" class="field-select">
+                                        <option value="premium">Premium</option>
+                                        <option value="bold">Bold</option>
+                                        <option value="minimal">Minimal</option>
+                                        <option value="playful">Playful</option>
+                                        <option value="expert">Expert</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="generator-step" data-step="2">
+                            <div class="generator-step-header">
+                                <div class="generator-step-icon"><i data-lucide="image" class="icon icon--md"></i></div>
+                                <h3>2. Visual core</h3>
+                                <span class="step-status" id="stepStatus2">Incomplete</span>
+                            </div>
+                            <div class="generator-fields">
+                                <div class="field-full">
+                                    <label class="field-label" for="gen-object">What is shown (main object)</label>
+                                    <textarea id="gen-object" name="object" class="field-textarea" rows="2" placeholder="Describe the object in detail"></textarea>
+                                    <div class="field-help">Example: Luxury wristwatch on a dark marble table</div>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-style">Style</label>
+                                    <select id="gen-style" name="style" class="field-select">
+                                        <option value="photo">Realistic photo</option>
+                                        <option value="render3d">3D render (studio)</option>
+                                        <option value="cinematic">Cinematic style</option>
+                                        <option value="editorial">Editorial magazine style</option>
+                                        <option value="illustration">Minimal illustration</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-lighting">Lighting</label>
+                                    <select id="gen-lighting" name="lighting" class="field-select">
+                                        <option value="cinematic">Cinematic lighting</option>
+                                        <option value="soft_daylight">Soft daylight</option>
+                                        <option value="golden_hour">Golden hour</option>
+                                        <option value="studio">Studio lighting</option>
+                                        <option value="neon">Neon lighting</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-camera">Camera angle</label>
+                                    <select id="gen-camera" name="camera" class="field-select">
+                                        <option value="closeup">Close-up</option>
+                                        <option value="eye_level">Eye level</option>
+                                        <option value="flatlay">Flat lay</option>
+                                        <option value="wide_angle">Wide angle</option>
+                                        <option value="hero_shot">Hero shot</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-color">Dominant color</label>
+                                    <div class="color-chips" role="group" aria-label="Color selection" data-target="gen-color">
+                                        <button type="button" class="color-chip" data-color-key="gold" data-color="Warm golden tones" style="--chip-color: #D4A017">Gold</button>
+                                        <button type="button" class="color-chip" data-color-key="blue" data-color="Deep blue" style="--chip-color: #1E3A8A">Blue</button>
+                                        <button type="button" class="color-chip" data-color-key="pastel" data-color="Soft pastel pink" style="--chip-color: #F9A8D4">Pastel</button>
+                                        <button type="button" class="color-chip" data-color-key="coral" data-color="Vivid coral" style="--chip-color: #F56565">Coral</button>
+                                        <button type="button" class="color-chip" data-color-key="green" data-color="Nature green" style="--chip-color: #38A169">Green</button>
+                                        <button type="button" class="color-chip" data-color-key="violet" data-color="Violet" style="--chip-color: #7C3AED">Violet</button>
+                                        <button type="button" class="color-chip" data-color-key="neutral" data-color="Neutral grey tones" style="--chip-color: #6B7280">Neutral</button>
+                                    </div>
+                                    <input type="text" id="gen-color" name="color" class="field-input" placeholder="Or enter your own color">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="generator-step" data-step="3">
+                            <div class="generator-step-header">
+                                <div class="generator-step-icon"><i data-lucide="type" class="icon icon--md"></i></div>
+                                <h3>3. Text integration</h3>
+                                <span class="step-status" id="stepStatus3">Incomplete</span>
+                            </div>
+                            <div class="generator-fields">
+                                <div>
+                                    <label class="field-label" for="gen-headline">Headline</label>
+                                    <input type="text" id="gen-headline" name="headline" class="field-input" placeholder="Enter a headline">
+                                    <div class="field-help">Example: Experience luxury, New collection is here</div>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-cta">Call to action (CTA)</label>
+                                    <input type="text" id="gen-cta" name="cta" class="field-input" placeholder="Enter a CTA">
+                                    <div class="field-help">Example: Shop now, Learn more, Sign up</div>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-textPosition">Text position</label>
+                                    <select id="gen-textPosition" name="textPosition" class="field-select">
+                                        <option value="center">Center</option>
+                                        <option value="top">Top section</option>
+                                        <option value="bottom_third">Bottom third</option>
+                                        <option value="dynamic">Dynamic layout</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="field-label" for="gen-typography">Typography style</label>
+                                    <select id="gen-typography" name="typography" class="field-select">
+                                        <option value="sans">Modern sans-serif</option>
+                                        <option value="serif">Premium serif</option>
+                                        <option value="minimal">Minimal</option>
+                                        <option value="script">Handwritten</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="generator-sidebar">
+                        <div class="generator-output" role="region" aria-label="Generated prompt">
+                            <div class="generator-output-header">
+                                <div class="generator-output-badge">
+                                    <span class="pulse"></span>
+                                    <span>Generated Prompt</span>
+                                </div>
+                                <div class="generator-quality-wrap">
+                                    <div class="generator-quality" id="qualityMeter" aria-live="polite">Strength: 0/7</div>
+                                    <div class="generator-quality-hint" id="qualityHint">Fill in more fields for a stronger prompt</div>
+                                </div>
+                                <button class="generator-output-copy" id="genCopyBtn" aria-label="Copy generated prompt">
+                                    <i data-lucide="copy" class="icon icon--md"></i>
+                                </button>
+                            </div>
+                            <div class="generator-output-text" id="generatorOutput" aria-live="polite">
+                                Realistic photo: [Object]. Close-up, cinematic lighting, highly detailed, top quality, professional composition. Created for the marketing goal of marketing campaign, aimed at target audience on Instagram. Tone: Premium.
+                            </div>
+                            <div class="generator-output-footer">
+                                <p class="generator-chars">Characters: <strong id="generatorCharCount">0</strong></p>
+                                <p>Copy the prompt and paste it into your chosen AI image generator.</p>
+                                <button class="generator-output-cta" id="genCopyCta" aria-label="Copy prompt and prepare it">
+                                    <span>COPY PROMPT</span>
+                                    <i data-lucide="arrow-right" class="icon icon--md"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="tips-toggle" id="tipsToggle" aria-expanded="false" aria-controls="tipsContent">
+                                <span class="tips-toggle-label"><i data-lucide="info" class="icon icon--md"></i> Expert tips</span>
+                                <i data-lucide="chevron-down" class="icon icon--sm" id="tipsChevron"></i>
+                            </button>
+                            <div class="tips-content" id="tipsContent" hidden>
+                                <p><strong>Be specific:</strong> Instead of “nice car”, write “matte black SUV on a forest road”.</p>
+                                <p><strong>Lighting drives the mood.</strong> Always choose a lighting style — it is often the most important visual cue.</p>
+                                <p><strong>Teksto erdvė:</strong> Jei planuojate dėti tekstą vėliau, prompt'e nurodykite „clean negative space for text overlay".</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="community" id="community" aria-labelledby="community-title">
+            <h2 id="community-title">Visuals done.<br>Want more?</h2>
+            <a href="https://chat.whatsapp.com/It49fzTl1n90huRCoWWkwu?mode=gi_t" class="community-cta-primary" target="_blank" rel="noopener noreferrer" aria-label="Open the Prompt Anatomy WhatsApp group in a new tab">Join the WhatsApp group</a>
+            <a href="https://promptanatomy.app/" class="community-cta-secondary" target="_blank" rel="noopener noreferrer" aria-label="Full Prompt Anatomy – interactive learning (opens in a new tab)">Prompt Anatomy →</a>
+        </section>
+
+        <footer class="footer">
+            <h3>Create visuals with AI <span class="icon-wrap" aria-hidden="true"><i data-lucide="sparkles" class="icon icon--md"></i></span></h3>
+            <p>Replace <strong>[object]</strong>, <strong>[environment]</strong>, <strong>[color palette]</strong>, <strong>[headline]</strong> and the other fields with your own data.</p>
+            <p class="footer-product-link">Tai Spin-off No. 5 iš „<a href="https://promptanatomy.app/" target="_blank" rel="noopener noreferrer">Promptų anatomijos</a>“. Kontaktas: <a href="mailto:info@promptanatomy.app">info@promptanatomy.app</a></p>
+            <div class="tags" role="list">
+                <span class="tag" role="listitem"><span class="icon-wrap" aria-hidden="true"><i data-lucide="image" class="icon icon--sm"></i></span> AI visuals</span>
+                <span class="tag" role="listitem"><span class="icon-wrap" aria-hidden="true"><i data-lucide="book-marked" class="icon icon--sm"></i></span> 4 templates</span>
+                <span class="tag" role="listitem"><span class="icon-wrap" aria-hidden="true"><i data-lucide="zap" class="icon icon--sm"></i></span> Generator</span>
+                <span class="tag" role="listitem"><span class="icon-wrap" aria-hidden="true"><i data-lucide="target" class="icon icon--sm"></i></span> Marketing visuals</span>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Tomas Staniulis. Training material. All rights reserved. <a href="privacy.html">Privacy</a></p>
+            </div>
+        </footer>
+
+        </main>
+    </div>
+
+    <textarea class="hidden" id="hiddenTextarea" aria-label="Copy helper field" aria-hidden="true"></textarea>
+
+        <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" aria-label="Copy notification">
+        <div class="toast-icon" aria-hidden="true"><i data-lucide="check" class="icon icon--lg"></i></div>
+        <span id="toastMessage">Copied.</span>
+        <span class="toast-progress" id="toastProgress" aria-hidden="true"></span>
+    </div>
+
+    <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+    <script src="../generator.js"></script>
+    <script src="../copy.js"></script>
+</body>
+</html>

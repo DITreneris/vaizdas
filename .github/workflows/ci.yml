@@ -10,6 +10,10 @@ jobs:
   lint-and-test:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      CI: true
+      BASE_PATH: /${{ github.event.repository.name }}
+      SITE_ORIGIN: https://${{ github.repository_owner }}.github.io
     steps:
       - uses: actions/checkout@v4
 
@@ -29,6 +33,8 @@ jobs:
           npx serve -s . -l 3000 &
           npx wait-on -t 60000 http://127.0.0.1:3000/
           npx pa11y http://127.0.0.1:3000/ --config .pa11yrc.json
+          npx pa11y http://127.0.0.1:3000/lt/ --config .pa11yrc.json
+          npx pa11y http://127.0.0.1:3000/en/ --config .pa11yrc.json
           npx pa11y http://127.0.0.1:3000/privatumas.html --config .pa11yrc.json
-        env:
-          CI: true
+          npx pa11y http://127.0.0.1:3000/lt/privatumas.html --config .pa11yrc.json
+          npx pa11y http://127.0.0.1:3000/en/privacy.html --config .pa11yrc.json

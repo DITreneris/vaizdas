@@ -1,5 +1,6 @@
-# GitHub Pages deploy – statinė DI Promptų Biblioteka
+# GitHub Pages deploy – DI Vaizdo Generatorius (statinė HTML)
 # Reikalavimas: Repo Settings → Pages → Build and deployment: GitHub Actions
+# Jei deploy 404: https://github.com/DITreneris/vaizdas/settings/pages → Source: GitHub Actions
 # Nuoroda: https://github.com/DITreneris/spinoff01 (QA standartas)
 
 name: Deploy to GitHub Pages
@@ -18,15 +19,21 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      BASE_PATH: /${{ github.event.repository.name }}
+      SITE_ORIGIN: https://${{ github.repository_owner }}.github.io
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
       - run: npm install
       - run: npm test
 
@@ -34,11 +41,19 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    env:
+      BASE_PATH: /${{ github.event.repository.name }}
+      SITE_ORIGIN: https://${{ github.repository_owner }}.github.io
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
